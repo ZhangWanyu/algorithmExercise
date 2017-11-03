@@ -9,6 +9,39 @@ public class ArrayUtility {
 
     private static int mArray[] = {1,2,2,3,3,3,4,5};
 
+    //数组中多余的最多只留下2个
+    public static StringBuffer arrayRemoveDuplicateNoMoreTwo() {
+        if (mArray == null || mArray.length == 0) {
+            return new StringBuffer("error");
+        }
+        if (mArray.length == 1) {
+            return new StringBuffer(" " + mArray[0] + "  \n  count is 1");
+        }
+        StringBuffer sb = new StringBuffer();
+        boolean flag = false;
+        int pre = 0, now = 1;
+        for (; now < mArray.length; now++) {
+            if (mArray[now] == mArray[pre]) {
+                if (!flag) {
+                    pre++;
+                    flag = true;
+                } else {
+
+                }
+            } else {
+                pre++;
+                mArray[pre] = mArray[now];
+                flag = false;
+            }
+        }
+
+        for (int i=0; i<=pre; i++) {
+            sb.append(mArray[i] + " , ");
+        }
+        int count = pre+1;
+        sb.append("\n  count is " + count);
+        return sb;
+    }
 
     //数组中去重
     public static StringBuffer arrayRemoveDuplicate() {
@@ -21,20 +54,18 @@ public class ArrayUtility {
         StringBuffer sb = new StringBuffer();
         int pre = 0;
         int now = 1;
-        int count = 1;
         for (; now < mArray.length; now++) {
             if (mArray[now] == mArray[pre]) {
 
             } else {
                 pre++;
                 mArray[pre] = mArray[now];
-                count++;
             }
         }
-        for (int i=0; i<count; i++) {
+        for (int i=0; i <= pre; i++) {
             sb.append(mArray[i] + " , ");
         }
-        sb.append(" \n count is " + count);
+        sb.append(" \n count is " + pre);
 
         return sb;
     }

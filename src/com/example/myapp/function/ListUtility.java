@@ -1,5 +1,7 @@
 package com.example.myapp.function;
 
+import java.util.HashSet;
+
 /**
  * Created by zhangwanyu on 17-10-24.
  */
@@ -50,7 +52,7 @@ public class ListUtility {
         Node node4 = new Node(4);
         Node node5 = new Node(5);
 
-        head0.setNext(node1); node1.setNext(node2); node2.setNext(node3); node3.setNext(node4); node4.setNext(node5); node5.setNext(null);
+        head0.setNext(node1); node1.setNext(node2); node2.setNext(node3); node3.setNext(node4); node4.setNext(node5); node5.setNext(node2);
         mNode1 = head0;
 
         Node secondNode = new Node(-1);
@@ -62,6 +64,57 @@ public class ListUtility {
         /*head0.setSpecial(null); node2.setSpecial(node5); node4.setSpecial(node3);*/
 
         return head0;
+    }
+
+    public static StringBuffer cycleList() {
+        init();
+        if (mNode1 == null) {
+            return new StringBuffer("null");
+        }
+        StringBuffer sb = new StringBuffer();
+        Node man = mNode1;  Node kuai = mNode1;
+        boolean have = false;
+        while (kuai != null && kuai.getNext()!= null) {
+            man = man.getNext();
+            kuai = kuai.getNext().getNext();
+            if (kuai == man) {
+                have = true;
+                break;
+            }
+        }
+        if (have){
+            sb.append("have \n ");
+        } else {
+            sb.append("no find");
+        }
+        return sb;
+    }
+
+    public static StringBuffer cycleList2() {
+        init();
+        if (mNode1 == null) {
+            return new StringBuffer("null");
+        }
+        StringBuffer sb = new StringBuffer();
+        Node temp = mNode1;
+        HashSet<Node> set = new HashSet<Node>();
+        boolean have = false;
+        while (temp != null) {
+            if (!set.contains(temp)) {
+                set.add(temp);
+                temp = temp.getNext();
+            } else {
+                have = true;
+                break;
+            }
+        }
+
+        if (have){
+            sb.append("have \n node is " + temp.getData());
+        } else {
+            sb.append("no find");
+        }
+        return sb;
     }
 
     public static StringBuffer findTwoListFirstCommondNode() {

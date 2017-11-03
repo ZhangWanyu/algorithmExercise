@@ -39,7 +39,7 @@ public class MyActivity extends Activity implements View.OnClickListener{
     }
 
     private void doAction() {
-        showResult(ArrayUtility.arrayRemoveDuplicate());
+        showResult(ListUtility.cycleList());
     }
 
 
