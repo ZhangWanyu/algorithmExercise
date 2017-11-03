@@ -7,8 +7,37 @@ public class ArrayUtility {
 
     private static final String ERROR = "error";
 
-    private static int mArray[] = {1,3,5,8,11,13,16,25};
+    private static int mArray[] = {1,2,2,3,3,3,4,5};
 
+
+    //数组中去重
+    public static StringBuffer arrayRemoveDuplicate() {
+        if (mArray == null || mArray.length == 0) {
+            return new StringBuffer("error");
+        }
+        if (mArray.length == 1) {
+            return new StringBuffer(" " + mArray[0] + "  \n  count is 1");
+        }
+        StringBuffer sb = new StringBuffer();
+        int pre = 0;
+        int now = 1;
+        int count = 1;
+        for (; now < mArray.length; now++) {
+            if (mArray[now] == mArray[pre]) {
+
+            } else {
+                pre++;
+                mArray[pre] = mArray[now];
+                count++;
+            }
+        }
+        for (int i=0; i<count; i++) {
+            sb.append(mArray[i] + " , ");
+        }
+        sb.append(" \n count is " + count);
+
+        return sb;
+    }
 
     //查找连续连续正数序列和为value的所有序列(最少连个连续的数字组成)
     public static StringBuffer findContinueSequence() {
